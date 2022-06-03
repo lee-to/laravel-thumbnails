@@ -1,12 +1,14 @@
 <?php
 
 return [
-    "storage_path" => "app/public",
+    'disk' => env('FILESYSTEM_DISK', 'local'),
 
-    "defaults" => [
-        "field" => "images",
-        "dir" => "images",
-        "size" => "150x150",
-        "method" => "crop",
+    'allowed_sizes' => ['150x150'],
+
+    'defaults' => [
+        'field' => 'photo',
+        'dir' => 'images',
+        'size' => '150x150',
+        'method' => 'resize',
     ]
 ];
