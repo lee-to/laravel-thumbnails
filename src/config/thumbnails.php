@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'disk' => env('FILESYSTEM_DISK', 'local'),
+    'disk' => env('FILESYSTEM_DRIVER', 'local'),
 
     'allowed_sizes' => ['150x150'],
 
