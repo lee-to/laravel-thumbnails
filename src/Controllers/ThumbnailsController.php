@@ -13,7 +13,7 @@ class ThumbnailsController extends BaseController
     {
         $allowedSizes = config('thumbnails.allowed_sizes') ?? [];
 
-        if(!in_array($size, $allowedSizes)) {
+        if (!in_array($size, $allowedSizes)) {
             abort(403, 'Size is not allowed');
         }
 
@@ -23,16 +23,16 @@ class ThumbnailsController extends BaseController
 
         $storage = Storage::disk(config('thumbnails.disk') ?? null);
 
-        if(!$storage->exists($dirPath)) {
+        if (!$storage->exists($dirPath)) {
             $storage->makeDirectory($dirPath);
         }
 
-        if(!$storage->exists($fullPath)) {
+        if (!$storage->exists($fullPath)) {
             $image = Image::make($storage->path($originalPath));
 
             $size = Str::of($size);
 
-            if($size->contains('x')) {
+            if ($size->contains('x')) {
                 $image->{$method}(
                     $size->before('x')->toString(),
                     $size->after('x')->toString()

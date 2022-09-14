@@ -15,13 +15,13 @@ class ThumbnailsServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $path = __DIR__ . '/..';
+        $path = __DIR__.'/..';
 
         $this->publishes([
-            $path . '/config/' . $this->namespace . '.php' => config_path($this->namespace . '.php'),
+            $path.'/config/'.$this->namespace.'.php' => config_path($this->namespace.'.php'),
         ]);
 
-        $this->loadRoutesFrom($path . '/routes/' . $this->namespace . '.php');
+        $this->loadRoutesFrom($path.'/routes/'.$this->namespace.'.php');
     }
 
 }

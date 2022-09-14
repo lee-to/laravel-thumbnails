@@ -39,17 +39,17 @@ return [
 #### Добавьте trait Leeto\Thumbnails\Traits\WithThumbnails для необходимой модели
 
 ```vue
-    <img src="{{ $model->thumbnail('image', 'crop', '150x150') }}" />
+    <img src="{{ $model->getThumbnail('image', 'crop', '150x150') }}" />
 ```
 
 #### Вывод изображения
 
 ```php
-    $model->thumbnail($field, $method, $size);
+    $model->getThumbnail($field, $method, $size);
 ```
 
 ```php
-    $model->thumbnail();
+    $model->getThumbnail();
     // Можно ничего не указывать, тогда установятся значения из конфига defaults
 ```
 
