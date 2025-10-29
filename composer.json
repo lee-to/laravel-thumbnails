@@ -8,7 +8,7 @@
         "php": "^7.3|^8.0",
         "ext-curl": "*",
         "ext-json": "*",
-        "intervention/image": "^2.5"
+        "intervention/image": "^3.11"
     },
     "require-dev": {
         "phpunit/phpunit": "8.5.x-dev",
