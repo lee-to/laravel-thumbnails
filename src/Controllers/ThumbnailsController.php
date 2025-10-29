@@ -5,7 +5,8 @@ namespace Leeto\Thumbnails\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class ThumbnailsController extends BaseController
 {
@@ -28,17 +29,18 @@ class ThumbnailsController extends BaseController
         }
 
         if (!$storage->exists($fullPath)) {
-            $image = Image::make($storage->path($originalPath));
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($storage->path($originalPath));
 
-            $size = Str::of($size);
+            $sizes = Str::of($size);
 
-            if ($size->contains('x')) {
+            if ($sizes->contains('x')) {
                 $image->{$method}(
-                    $size->before('x')->toString(),
-                    $size->after('x')->toString()
+                    $sizes->before('x')->toString(),
+                    $sizes->after('x')->toString()
                 );
             } else {
-                $image->{$method}($size->toString());
+                $image->{$method}($sizes->toString());
             }
 
             $image->save($storage->path($fullPath));
